@@ -1,0 +1,16 @@
+Makefile
+duptest*
+duptest.c
+fdtest*
+fdtest.c
+fdtest2*
+fdtest2.c
+forktest*
+forktest.c
+output.txt
+ptest*
+ptest.c
+ptest1*
+ptest2*
+threadtest*
+threadtest.c
