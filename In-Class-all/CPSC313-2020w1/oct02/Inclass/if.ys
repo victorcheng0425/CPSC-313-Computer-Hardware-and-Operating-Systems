@@ -1,0 +1,19 @@
+# Let’s assume p is in %rbp
+	irmovq data, %rbp
+	# xorq %rbp, %rbp
+bar:
+	rrmovq %rbp, %rbx
+	andq %rbx, %rbx
+	jeq error
+
+# If P is not null then continue
+	irmovq	1, %rax
+	addq	%rax, %rbp
+	jmp	bar
+
+error:	# Handle the 'if' clause
+	irmovq	0xFFFFFFFFFFFFFFFF, %rax
+	ret
+
+data:
+	.quad 0xDECAF

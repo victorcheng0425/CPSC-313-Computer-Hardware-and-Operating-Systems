@@ -1,0 +1,19 @@
+	irmovq Data, %rbp	# rbp points to data
+	irmovq 8, %rsi		# rsi = increment ptr
+	xorq %rcx, %rcx		# rcx = 0 (accumulator)
+loop:
+	mrmovq 0(%rbp), %rdi	# read from array
+	andq %rdi, %rdi		# Check for 0 element
+	je Done			# Done if 0
+	addq %rdi, %rcx		# add element to rcx
+	addq %rsi, %rbp		# advance to next item
+	jmp loop		# process next
+Done:
+	halt
+
+Data:
+	.quad 0xDECADE
+	.quad 0xBE11
+	.quad 0xAB1E
+	.quad 0xABBA
+	.quad 0

@@ -1,0 +1,43 @@
+# Using the conditional jump instructions
+# to compare two numbers.
+# Let's operate on our 'parameters'
+# in registers rsi and rdi and our result
+# in %rax
+irmovq 0xff, %rsi
+irmovq 0x1, %rdi
+
+# rax = rsi > rdi ? 1 : 0
+	irmovq 1, %rax	# initialize the result
+	rrmovq %rsi, %r10
+	subq %rdi, %r10
+
+# if %rdi was greater than %rsi, we want
+# to return 1, which is what we already
+# set %rax to, so we can go on to the next
+# example
+	jg next1
+	irmovq 0, %rax	# Return 0
+
+# rax = rsi  == rdi ? 1 : 0
+next1:	
+	irmovq 1, %rax	# Initialize %rax
+	rrmovq %rsi, %r10
+	subq %rdi, %r10
+
+# Once again, if the condition holds, we
+# are done, because we initialized %rax to 1
+	je next2
+	irmovq 0, %rax	# Return 0
+
+# rax = rsi >= 0
+next2:
+	irmovq 1, %rax	# Initialize to 1
+	andq %r10, %r10
+
+# if result should be 1, we're all set
+	jge done	# Jump if true
+	irmovq 0, %rax	# else, return 0
+
+done:
+	halt
+

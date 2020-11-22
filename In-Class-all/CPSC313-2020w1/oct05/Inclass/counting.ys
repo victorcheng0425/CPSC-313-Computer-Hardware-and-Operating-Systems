@@ -1,0 +1,14 @@
+	xorq   %rax, %rax	# rax = 0 (count)
+	xorq   %rsi, %rsi	# rsi = 0 = j
+	irmovq  1, %rbx
+
+Loop:	
+	irmovq 5, %rdi		# rdi = 5
+	subq %rsi, %rdi		# check end cond
+	jle Done		# if 10-j <= 0, jmp
+	addq %rbx, %rsi		# j++
+	addq %rbx, %rax		# count++
+	jmp Loop
+
+Done:
+	halt

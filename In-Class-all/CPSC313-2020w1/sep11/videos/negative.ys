@@ -1,0 +1,4 @@
+# Initialize two registers
+irmovq 10, %rax
+irmovq -10, %rdx
+

@@ -1,0 +1,12 @@
+# Initialize %r14 to be 0
+irmovq 0, %r14
+# Let's swap them using %r14 as a temp register
+mrmovq	A(%r14), %rax
+mrmovq	B(%r14), %rbx
+rmmovq	%rax, B(%r14)
+rmmovq	%rbx, A(%r14)
+
+.pos 0x1000
+A:	.quad	0xA000CAFE
+B:	.quad	0xB000FACE
+

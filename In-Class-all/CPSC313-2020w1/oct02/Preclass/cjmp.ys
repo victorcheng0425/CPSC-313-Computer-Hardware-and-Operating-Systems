@@ -1,0 +1,20 @@
+# Examine when we need to know the
+# condition codes for a conditional
+# jmp
+	irmovq	1, %rax
+	irmovq	2, %rbx
+	nop
+	nop
+	nop
+	addq	%rax, %rbx
+	jg	A
+	halt
+
+
+A:	irmovq	0xFACE, %rax
+	nop
+	nop
+	nop
+	nop
+	nop
+	halt

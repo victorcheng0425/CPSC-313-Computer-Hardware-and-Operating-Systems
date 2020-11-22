@@ -1,0 +1,9 @@
+# Let’s assume j is in %rsi
+
+	irmovq 1, %rax	# rax = 1
+
+Loop: 	addq %rax, %rsi
+	irmovq 10, %rdi	# rdi = 10
+	subq %rsi, %rdi	# set CC
+	jg Loop
+

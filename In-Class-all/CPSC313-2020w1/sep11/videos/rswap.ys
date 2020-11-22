@@ -1,0 +1,8 @@
+# Initialize two registers
+irmovq 1, %rax
+irmovq 2, %rbx
+
+# Let's swap them using %r14 as a temp register
+rrmovq	%rax, %r14
+rrmovq	%rbx, %rax
+rrmovq	%r14, %rbx

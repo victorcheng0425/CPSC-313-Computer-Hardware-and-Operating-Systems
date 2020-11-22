@@ -1,0 +1,10 @@
+irmovq  1, %rax
+irmovq  2, %rbx
+irmovq  3, %rcx
+nop
+nop
+nop
+nop
+nop
+addq %rax, %rbx
+addq %rbx, %rcx

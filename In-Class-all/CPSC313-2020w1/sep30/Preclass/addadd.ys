@@ -1,0 +1,21 @@
+# We will run this using the PIPE- implementation
+# We want to focus on the two add instructions,
+# so we're going to put nops here to let us do
+# that.
+irmovq  1, %rax
+irmovq  2, %rbx
+irmovq  3, %rcx
+nop
+nop
+nop
+addq %rax, %rbx
+
+# When this next instruction reaches its Decode stage
+# using the naive implementation, notice its values
+# for d_valA and d_valB
+addq %rbx, %rcx
+
+# And if run until halt; notice that 5 is in RCX, not 6
+halt
+
+# We will run this again using the Stalling implementation

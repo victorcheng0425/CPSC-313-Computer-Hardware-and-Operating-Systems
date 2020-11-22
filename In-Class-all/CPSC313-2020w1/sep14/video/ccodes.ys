@@ -1,0 +1,19 @@
+irmovq  0x1, %rax
+irmovq  0x2, %rbx
+addq    %rax, %rbx      # rbx = 1 + 2 = 3
+subq    %rax, %rbx      # rbx = 3 – 1 = 2
+subq    %rbx, %rax      # rax = 1 – 2 = 0xFF…F
+xorq    %rax, %rax      # rax = 0
+xorq    %rax, %rax      # Still 0
+subq    %rbx, %rax      # rax = 0 – 2 = 0xFFFF...E 
+andq    %rax, %rax      # rax = unchanged
+addq    %rax, %rax      # rax = -2 + -2 = 0xFFF...C 
+addq    %rax, %rbx      # rbx = 2 + -4 = 0xFFF…E
+addq    %rbx, %rax      # rax = -2 + -4 = 0xFFF..A
+irmovq  0x1, %rax       # rax = 1
+addq    %rbx, %rax      # rax = 0xFFFF…F
+irmovq  0x3, %rax       # rax = 3
+addq    %rax, %rbx      # rbx = 1
+# Generate Overflow
+irmovq 0x7FFFFFFFFFFFFFFF, %rax
+addq %rax, %rax

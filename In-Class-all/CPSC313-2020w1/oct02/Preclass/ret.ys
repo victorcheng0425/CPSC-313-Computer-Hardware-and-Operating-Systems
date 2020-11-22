@@ -1,0 +1,25 @@
+# We will first run this with stalling
+# Initialize the stack pointer and
+# let it move all the way through
+# the pipeline before doing the call
+irmovq  0x2000, %rsp
+nop
+nop
+nop
+nop
+nop
+call foo
+halt
+
+# Call changed the stack pointer; we want
+# to let that change make its way through the 
+# pipeline so we can isolate the behavior of
+# the ret
+foo:
+    nop
+    nop
+    nop
+    nop
+    nop
+    ret
+

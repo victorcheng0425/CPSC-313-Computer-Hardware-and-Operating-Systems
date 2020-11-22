@@ -1,0 +1,29 @@
+# Describe in English what this program does
+# Write C code to implement the same functionality.
+
+    irmovq  array, %rcx
+    irmovq  8, %rsi
+    xorq    %rax, %rax
+loop:
+    mrmovq  0(%rcx), %rbx
+    irmovq  -1, %rdi
+    subq    %rbx, %rdi
+    je      done
+    addq    %rbx, %rax
+    addq    %rsi, %rcx
+    jmp     loop
+    
+done:
+    halt
+
+    
+
+.pos 0x2000
+array:
+.quad   42
+.quad   3
+.quad   100
+.quad   -10
+.quad   15
+.quad   27
+.quad   -1

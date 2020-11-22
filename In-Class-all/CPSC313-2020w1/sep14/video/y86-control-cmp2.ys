@@ -1,0 +1,27 @@
+# Using the conditional move instructions
+# to compare two numbers.
+irmovq 0xff, %rsi
+irmovq 0x1, %rdi
+irmovq 0x1, %r11	# for return 1
+
+# rax = rsi > rdi ? 1 : 0
+	irmovq 0, %rax		# Initialize result to 0
+	rrmovq %rsi, %r10
+	subq %rdi, %r10
+	cmovg %r11, %rax	# Change result if condition is true
+
+# rax = rsi  == rdi ? 1 : 0
+	irmovq 0, %rax		# Initialize results to 0
+	rrmovq %rsi, %r10
+	subq %rdi, %r10
+	cmove %r11, %rax	# Change result if condition is true
+
+# rax = rsi >= 0
+	irmovq 0, %rax		# Initialize results to 0
+	rrmovq %rsi, %r10
+	andq %r10, %r10		# Sets flags based on value
+# if result should be 1, we're all set
+	cmovge %r11, %rax	# Change result if condition is true
+
+	halt
+
